@@ -16,11 +16,6 @@ public class App extends Application {
         super.onCreate();
         AppConstant.init(this);
         initARouter(BaseConstant.Base.application);
-        /**
-         * 管控各个子模块的初始化
-         * 管控各个模块的主fragment
-         * 管控各个模块的跳转，统一基座进行跳转
-         */
         ModelManager.init(BaseConstant.Base.application);
         ModelManager.onApplicationCreate(BaseConstant.Base.application);
     }

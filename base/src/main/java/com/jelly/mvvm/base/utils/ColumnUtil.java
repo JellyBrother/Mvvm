@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 
 public class ColumnUtil {
     private static final String TAG = "ColumnSystem";
-    public static final String DEFINITION = "c4m16g8d0-c8m16g8d0-c12m24g12d0";
+    public static final String DEFAULT_DEFINITION = "c4m16g8d0-c8m16g8d0-c12m24g12d0";
     /**
      * c是栅格column，m是边距margin，g是间隔gutter，d是偏移deflection
      */
@@ -21,7 +21,7 @@ public class ColumnUtil {
     public static float columnWidth;
 
     public static void init(Context context) {
-        init(context, DEFINITION);
+        init(context, DEFAULT_DEFINITION);
     }
 
     public static void init(Context context, String definition) {

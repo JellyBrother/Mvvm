@@ -144,7 +144,7 @@ public abstract class BaseActivity<VM extends BaseViewModel> extends FragmentAct
     }
 
     private void initColumnSystem() {
-        ColumnUtil.init(this);
+        ColumnUtil.init(this, getDefinition());
     }
 
     private void setOrientation() {
@@ -200,5 +200,9 @@ public abstract class BaseActivity<VM extends BaseViewModel> extends FragmentAct
 
     protected boolean showStatusBar() {
         return true;
+    }
+
+    protected String getDefinition() {
+        return ColumnUtil.DEFAULT_DEFINITION;
     }
 }
