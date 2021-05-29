@@ -1,0 +1,8 @@
+rootProject.name = "Mvvm"
+include ':app'
+include ':base'
+include ':home'
+include ':post_base'
+include ':post_detail'
+include ':post_publish'
+include ':bridge'

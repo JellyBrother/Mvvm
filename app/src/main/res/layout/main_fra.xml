@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#323456">
+
+    <TextView
+        android:id="@+id/tvw_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:background="#823456"
+        android:text="Hello World!" />
+
+    <FrameLayout
+        android:id="@+id/fly_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#423456" />
+</LinearLayout>
