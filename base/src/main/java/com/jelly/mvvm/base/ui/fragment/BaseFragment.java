@@ -48,8 +48,9 @@ public abstract class BaseFragment<VM extends BaseViewModel> extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         log("onCreateView");
-        if (getLayoutResId() > 0) {
-            mRootView = inflater.inflate(getLayoutResId(), null, false);
+        int layoutResId = getLayoutResId();
+        if (layoutResId > 0) {
+            mRootView = inflater.inflate(layoutResId, null, false);
             return mRootView;
         }
         return super.onCreateView(inflater, container, savedInstanceState);

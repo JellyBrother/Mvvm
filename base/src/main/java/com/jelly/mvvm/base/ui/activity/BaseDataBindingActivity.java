@@ -11,8 +11,9 @@ public abstract class BaseDataBindingActivity<T extends ViewDataBinding> extends
 
     @Override
     protected void initContentView() {
-        if (getLayoutResId() > 0) {
-            mBinding = DataBindingUtil.inflate(getLayoutInflater(), getLayoutResId(), null, false);
+        int layoutResId = getLayoutResId();
+        if (layoutResId > 0) {
+            mBinding = DataBindingUtil.inflate(getLayoutInflater(), layoutResId, null, false);
             mBinding.setLifecycleOwner(this);
             setContentView(mBinding.getRoot());
         }

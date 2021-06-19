@@ -20,8 +20,9 @@ public abstract class BaseDataBindingFragment<T extends ViewDataBinding> extends
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         log("onCreateView");
-        if (getLayoutResId() > 0) {
-            mBinding = DataBindingUtil.inflate(getLayoutInflater(), getLayoutResId(), null, false);
+        int layoutResId = getLayoutResId();
+        if (layoutResId > 0) {
+            mBinding = DataBindingUtil.inflate(getLayoutInflater(), layoutResId, null, false);
             mBinding.setLifecycleOwner(this);
             mRootView = mBinding.getRoot();
             return mRootView;

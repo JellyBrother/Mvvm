@@ -29,8 +29,10 @@ import java.lang.reflect.Type;
  */
 public abstract class BaseActivity<VM extends BaseViewModel> extends FragmentActivity {
     protected String TAG = "BaseViewModel";
+    private final String BUNDLE_KEY_ISONSAVEINSTANCE = "Bundle_key_IsOnSaveInstance";
     protected long onCreateTime;
     private VM mViewModel;
+    protected boolean mIsOnSaveInstance = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,6 +44,7 @@ public abstract class BaseActivity<VM extends BaseViewModel> extends FragmentAct
             setStatusBar();
             initColumnSystem();
             setOrientation();
+            initIntent(savedInstanceState);
             initContentView();
         } catch (Throwable e) {
             LogUtil.getInstance().e(TAG, "onCreate Throwable:" + e);
@@ -91,6 +94,7 @@ public abstract class BaseActivity<VM extends BaseViewModel> extends FragmentAct
     protected void onResume() {
         super.onResume();
         log("onResume");
+        mIsOnSaveInstance = false;
     }
 
     @Override
@@ -109,6 +113,7 @@ public abstract class BaseActivity<VM extends BaseViewModel> extends FragmentAct
     public void onSaveInstanceState(@NonNull Bundle outState, @NonNull PersistableBundle outPersistentState) {
         super.onSaveInstanceState(outState, outPersistentState);
         log("onSaveInstanceState");
+        outState.putBoolean(BUNDLE_KEY_ISONSAVEINSTANCE, true);
     }
 
     @Override
@@ -155,6 +160,12 @@ public abstract class BaseActivity<VM extends BaseViewModel> extends FragmentAct
         }
     }
 
+    protected void initIntent(Bundle bundle) {
+        if (bundle != null) {
+            mIsOnSaveInstance = bundle.getBoolean(BUNDLE_KEY_ISONSAVEINSTANCE, false);
+        }
+    }
+
     private Class<VM> getViewModelClass() {
         Type type = getClass().getGenericSuperclass();
         if (type instanceof ParameterizedType) {
@@ -176,8 +187,9 @@ public abstract class BaseActivity<VM extends BaseViewModel> extends FragmentAct
     protected abstract int getLayoutResId();
 
     protected void initContentView() {
-        if (getLayoutResId() > 0) {
-            View view = getLayoutInflater().inflate(getLayoutResId(), null);
+        int layoutResId = getLayoutResId();
+        if (layoutResId > 0) {
+            View view = getLayoutInflater().inflate(layoutResId, null);
             setContentView(view);
         }
     }
